@@ -22,10 +22,7 @@ const int   daylightOffset_sec = 0;
 
 //init and get the time
 configTime(gmtOffset_sec, daylightOffset_sec, ntpServer);
-
-
-time_t init_Time;
-time(&init_Time);
+time_t init_Time = time(NULL);
 int offset = init_Time % (24 * 60 * 60);
 int epoch = init_Time - offset;
 
@@ -183,9 +180,7 @@ void taskOne( void * parameter )
 
 
         //calculate time since epoch
-        time_t now;
-        time(&now);
-
+        time_t now = time(NULL);
         int seconds = difftime(now, epoch);
         int milliseconds = seconds * 1000;
 
